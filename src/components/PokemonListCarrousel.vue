@@ -3,7 +3,7 @@ import { Pokemon } from '../types/Pokemon.ts'
 
 defineProps<{
   pokemonList: Pokemon[],
-  handleOnClickCurrentPokemonId:(number) => void
+  handleOnClickCurrentPokemonId:(currentId: number) => void
 }>()
 </script>
 
@@ -14,8 +14,11 @@ defineProps<{
       :key="pokemon.id"
       @click="() => handleOnClickCurrentPokemonId(pokemon.id)"
     >
-      <span>{{ pokemon.name }}</span>
-      <img :src="pokemon.sprites.front_default">
+      <span>{{ pokemon?.name }}</span>
+      <img
+        :src="pokemon?.sprites?.front_default || ''"
+        alt="Pokemon front sprites"
+      >
     </div>
   </div>
 </template>

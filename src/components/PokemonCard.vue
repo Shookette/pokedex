@@ -8,7 +8,7 @@ defineProps<{ pokemon: Pokemon }>()
   <article class="pokemon-card">
     <img
       class="pokemon-card__sprite"
-      :src="pokemon?.sprites?.front_default"
+      :src="pokemon?.sprites?.front_default || ''"
       alt="Sprites showing the front design of the current pokemon"
     >
     <h2 class="pokemon-card__title">

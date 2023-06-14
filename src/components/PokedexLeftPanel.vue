@@ -6,7 +6,7 @@ import PokemonListCarrousel from './PokemonListCarrousel.vue'
 defineProps<{
   currentPokemon: Pokemon,
   pokemonList: Pokemon[],
-  handleOnClickCurrentPokemonId:(number) => void
+  handleOnClickCurrentPokemonId:(id:number) => void
 }>()
 
 </script>

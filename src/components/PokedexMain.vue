@@ -4,6 +4,7 @@ import { Pokemon } from '../types/Pokemon.ts'
 import { getFivePokemonsByOffset } from '../repository/PokemonRepository.ts'
 import PokedexLeftPanel from './PokedexLeftPanel.vue'
 import PokedexRightPanel from './PokedexRightPanel.vue'
+import { updateMode } from '../types/PokedexMainType.ts'
 
 const pokemonList = ref<Pokemon[]>([])
 const currentPokemon = ref<Pokemon>()
@@ -20,8 +21,6 @@ watch(currentPokemonId, async () => {
 watch(pokemonList, () => {
   currentPokemon.value = pokemonList.value.find(pokemon => pokemon.id === currentPokemonId.value)
 })
-
-type updateMode = 'increase' | 'decrease'
 
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value

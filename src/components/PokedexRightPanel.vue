@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{ updateCurrentPokemonId:(string, number) => void}>()
+import { updateMode } from '../types/PokedexMainType.ts'
+
+defineProps<{ updateCurrentPokemonId:(mode: updateMode, value: number) => void}>()
 
 </script>
 
