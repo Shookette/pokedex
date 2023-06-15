@@ -30,7 +30,7 @@ defineProps<{
   display: flex;
   flex-direction: row;
   background-color: var(--color-background-grey-dark);
-  margin: 10px;
+  margin: 20px;
   border-radius: 5px;
 }
 

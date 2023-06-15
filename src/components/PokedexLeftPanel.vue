@@ -13,7 +13,12 @@ defineProps<{
 
 <template>
   <section class="pokedex-left-panel">
-    <div class="pokedex-left-panel__design" />
+    <div class="pokedex-left-panel__design">
+      <div class="left-part">
+        <div class="pokedex-left-panel__design__circle" />
+      </div>
+      <div class="right-part" />
+    </div>
     <PokemonCard
       :pokemon="currentPokemon"
     />
@@ -30,13 +35,55 @@ defineProps<{
   flex-direction: column;
   width: 350px;
   height: 600px;
-  background-color: var(--color-background-red-light);
+  background-color: var(--color-background-red-dark);
   margin: 50px 0 50px 50px;
-  border-radius: 10px;
-  border: 10px solid var(--color-background-red-dark);
+  border-radius: 10px 0 0 10px;
 
   &__design {
     height: 100px;
+    position: relative;
+    background-color: var(--color-background-red-light);
+    border-radius: 10px 0 0 10px;
+
+    &__circle {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background-color: var(--color-background-light-blue);
+      border: 3px solid white;
+      animation: blink 2s linear infinite;
+    }
+  }
+}
+
+.left-part {
+  margin: 20px;
+}
+
+.right-part {
+  width: 175px;
+  height: 70px;
+  background-color: var(--color-background-red-dark);
+  position: absolute;
+  right: 0;
+  top: 30px;
+}
+
+.right-part::after {
+  position: absolute;
+  left: 0;
+  content: "";
+  border-right: 100px solid transparent;
+  border-top: 70px solid var(--color-background-red-light);
+}
+
+@keyframes blink {
+  0% {
+    background-color: var(--color-background-light-blue);
+  }
+
+  100% {
+    background-color: var(--color-background-dark-blue);
   }
 }
 </style>
