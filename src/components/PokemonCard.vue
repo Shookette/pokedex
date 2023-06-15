@@ -27,7 +27,7 @@ defineProps<{ pokemon: Pokemon }>()
   border-radius: 20px 20px 20px 50px;
 
   &__sprite {
-    width: 200px;
+    width: 150px;
     height: auto;
     margin: auto;
   }

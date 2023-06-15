@@ -9,7 +9,7 @@ export const getPokemonById = async (id: number): Promise<Pokemon> => {
 }
 
 export const getFivePokemonsByOffset = async (offset: number): Promise<Pokemon[]> => {
-    const limit = 5;
+    const limit = 4;
     const promises: Promise<Pokemon>[] = [];
     for (let i = offset; i <= offset + limit; i++) {
         promises.push(getPokemonById(i));
