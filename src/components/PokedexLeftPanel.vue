@@ -25,6 +25,7 @@ defineProps<{
     <PokemonListCarrousel
       :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
       :pokemon-list="pokemonList"
+      :current-pokemon="currentPokemon"
     />
   </section>
 </template>

@@ -9,9 +9,10 @@ export const getPokemonById = async (id: number): Promise<Pokemon> => {
 }
 
 export const getFivePokemonsByOffset = async (offset: number): Promise<Pokemon[]> => {
-    const limit = 4;
+    const startIndex = offset === 1 ? 1 : offset - 1;
+    const limit = offset === 1 ? 1 : 2;
     const promises: Promise<Pokemon>[] = [];
-    for (let i = offset; i <= offset + limit; i++) {
+    for (let i = startIndex; i <= startIndex + limit; i++) {
         promises.push(getPokemonById(i));
     }
 
