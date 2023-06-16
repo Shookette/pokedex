@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { Pokemon } from '../types/Pokemon.ts'
-
 defineProps<{ pokemon: Pokemon }>()
 </script>
 
 <template>
   <article class="pokemon-card">
     <div class="pokemon-card__content">
+      <div class="pokemon-card__id">
+        {{ pokemon?.id }}
+      </div>
       <img
         class="pokemon-card__sprite"
         :src="pokemon?.sprites?.front_default || ''"
         alt="Sprites showing the front design of the current pokemon"
       >
       <h2 class="pokemon-card__title">
-        {{ pokemon?.id }} - {{ pokemon?.name }}
+        {{ pokemon?.name }}
       </h2>
     </div>
     <div class="pokemon-card__design">
@@ -47,6 +49,23 @@ defineProps<{ pokemon: Pokemon }>()
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__id {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--color-background-white);
+    color: var(--color-title);
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
     align-items: center;
     justify-content: center;
   }

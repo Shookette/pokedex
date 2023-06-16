@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { Pokemon } from '../types/Pokemon.ts'
-import { getFivePokemonsByOffset } from '../repository/PokemonRepository.ts'
+import { getPokemonsByOffsetAndLimit } from '../repository/PokemonRepository.ts'
 import PokedexLeftPanel from './PokedexLeftPanel.vue'
 import PokedexRightPanel from './PokedexRightPanel.vue'
 import { updateMode } from '../types/PokedexMainType.ts'
@@ -11,11 +11,11 @@ const currentPokemon = ref<Pokemon>()
 const currentPokemonId = ref<number>(1)
 
 onMounted(async () => {
-  pokemonList.value = await getFivePokemonsByOffset(currentPokemonId.value)
+  pokemonList.value = await getPokemonsByOffsetAndLimit(currentPokemonId.value)
 })
 
 watch(currentPokemonId, async () => {
-  pokemonList.value = await getFivePokemonsByOffset(currentPokemonId.value)
+  pokemonList.value = await getPokemonsByOffsetAndLimit(currentPokemonId.value)
 })
 
 watch(pokemonList, () => {
@@ -25,8 +25,13 @@ watch(pokemonList, () => {
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value
 
-  if (updateMode === 'decrease' && newValue <= 1) {
-    currentPokemonId.value = 1
+  if (updateMode === 'decrease' && newValue <= import.meta.env.VITE_FIRST_POKEMON_ID) {
+    currentPokemonId.value = parseInt(import.meta.env.VITE_FIRST_POKEMON_ID)
+    return
+  }
+
+  if (updateMode === 'increase' && newValue >= import.meta.env.VITE_LAST_POKEMON_ID) {
+    currentPokemonId.value = parseInt(import.meta.env.VITE_LAST_POKEMON_ID)
     return
   }
 
