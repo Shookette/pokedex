@@ -2,6 +2,7 @@ export type Pokemon = {
     id: number;
     name: string;
     sprites: PokemonSprite;
+    types: PokemonRawType[];
 }
 
 export type PokemonSprite = {
@@ -14,3 +15,33 @@ export type PokemonSprite = {
     front_shiny: string | null;
     front_shiny_female: string | null;
 }
+
+export type PokemonRawType = {
+    slot: number
+    type: {
+        name: PokemonType
+        url: string
+    }
+}
+
+export type PokemonType =
+    "normal" |
+    "fighting" |
+    "flying" |
+    "poison" |
+    "ground" |
+    "rock" |
+    "bug" |
+    "ghost" |
+    "steel" |
+    "fire" |
+    "water" |
+    "grass" |
+    "electric" |
+    "psychic" |
+    "ice" |
+    "dragon" |
+    "dark" |
+    "fairy" |
+    "unknown" |
+    "shadow";

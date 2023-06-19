@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { Pokemon } from '../types/Pokemon.ts'
 import { getPokemonsByOffsetAndLimit } from '../repository/PokemonRepository.ts'
 import PokedexLeftPanel from './PokedexLeftPanel.vue'
@@ -21,6 +21,10 @@ watch(currentPokemonId, async () => {
 watch(pokemonList, () => {
   currentPokemon.value = pokemonList.value.find(pokemon => pokemon.id === currentPokemonId.value)
 })
+
+const pokemonCurrentType = computed(() =>
+  currentPokemon.value?.types.map(type => type.type.name)
+)
 
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value
@@ -53,6 +57,7 @@ const handleOnClickCurrentPokemonId = (id: number) => {
     />
     <PokedexRightPanel
       :update-current-pokemon-id="updateCurrentPokemonId"
+      :pokemon-current-type="pokemonCurrentType"
     />
   </main>
 </template>

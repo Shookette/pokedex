@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { updateMode } from '../types/PokedexMainType.ts'
+import PokemonTypeList from './PokemonTypeList.vue'
+import { PokemonType } from '../types/Pokemon.ts'
 
-defineProps<{ updateCurrentPokemonId:(mode: updateMode, value: number) => void}>()
+defineProps<{
+  updateCurrentPokemonId:(mode: updateMode, value: number) => void,
+  pokemonCurrentType: { type: PokemonType[], default: [] }
+}>()
 
 </script>
 
 <template>
   <section class="pokedex-right-panel">
+    <PokemonTypeList :current-pokemon-type="pokemonCurrentType" />
     <div class="directional-buttons">
       <button
         class="direction-button up"
@@ -38,7 +44,7 @@ defineProps<{ updateCurrentPokemonId:(mode: updateMode, value: number) => void}>
   margin: 100px 50px 50px 0;
   border-radius: 10px;
   border: 10px solid var(--color-background-red-dark);
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: flex-end;
 }
 
