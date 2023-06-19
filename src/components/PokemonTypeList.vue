@@ -48,5 +48,6 @@ const isTypeIsInCurrentPokemonType = (type: PokemonType, pokemonTypeList: Pokemo
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 5px;
 }
 </style>
