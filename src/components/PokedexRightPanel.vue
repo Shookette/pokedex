@@ -48,7 +48,7 @@ const chartOptions = {
     max: 255,
     tickAmount: 7,
     labels: {
-      formatter: (val, i) => (i % 2 === 0) ? val : ''
+      formatter: (val: string, i: number) => (i % 2 === 0) ? val : ''
     },
     forceNiceScale: true
   },
