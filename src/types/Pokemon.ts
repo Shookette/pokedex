@@ -3,6 +3,7 @@ export type Pokemon = {
     name: string;
     sprites: PokemonSprite;
     types: PokemonRawType[];
+    stats: PokemonRawStats[];
 }
 
 export type PokemonSprite = {
@@ -17,12 +18,29 @@ export type PokemonSprite = {
 }
 
 export type PokemonRawType = {
-    slot: number
+    slot: number;
     type: {
-        name: PokemonType
-        url: string
+        name: PokemonType;
+        url: string;
     }
 }
+
+export type PokemonRawStats = {
+    base_stat: number;
+    effort: number;
+    stat: {
+        name: PokemonStat;
+        url: string;
+    }
+}
+
+export type PokemonStat =
+    "hp" |
+    "attack" |
+    "defense" |
+    "special-attack" |
+    "special-defense" |
+    "speed";
 
 export type PokemonType =
     "normal" |

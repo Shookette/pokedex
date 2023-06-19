@@ -26,6 +26,10 @@ const pokemonCurrentType = computed(() =>
   currentPokemon.value?.types.map(type => type.type.name)
 )
 
+const pokemonCurrentStat = computed(() =>
+  currentPokemon.value?.stats.map(stat => stat.base_stat)
+)
+
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value
 
@@ -58,6 +62,7 @@ const handleOnClickCurrentPokemonId = (id: number) => {
     />
     <PokedexRightPanel
       :pokemon-current-type="pokemonCurrentType"
+      :pokemon-current-stat="pokemonCurrentStat"
     />
   </main>
 </template>
