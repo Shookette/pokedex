@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { updateMode } from '../types/PokedexMainType.ts'
 import PokemonTypeList from './PokemonTypeList.vue'
 import { PokemonType } from '../types/Pokemon.ts'
-import PokemonCrossActionButton from './PokemonCrossActionButton.vue'
 
 defineProps<{
-  updateCurrentPokemonId:(mode: updateMode, value: number) => void,
   pokemonCurrentType: { type: PokemonType[], default: [] }
 }>()
 
@@ -14,7 +11,6 @@ defineProps<{
 <template>
   <section class="pokedex-right-panel">
     <PokemonTypeList :current-pokemon-type="pokemonCurrentType" />
-    <PokemonCrossActionButton :update-current-pokemon-id="updateCurrentPokemonId" />
   </section>
 </template>
 

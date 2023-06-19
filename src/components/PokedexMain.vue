@@ -54,9 +54,9 @@ const handleOnClickCurrentPokemonId = (id: number) => {
       :pokemon-list="pokemonList"
       :current-pokemon="currentPokemon"
       :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
+      :update-current-pokemon-id="updateCurrentPokemonId"
     />
     <PokedexRightPanel
-      :update-current-pokemon-id="updateCurrentPokemonId"
       :pokemon-current-type="pokemonCurrentType"
     />
   </main>

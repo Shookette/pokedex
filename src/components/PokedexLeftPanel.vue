@@ -2,11 +2,14 @@
 import { Pokemon } from '../types/Pokemon.ts'
 import PokemonCard from './PokemonCard.vue'
 import PokemonListCarrousel from './PokemonListCarrousel.vue'
+import PokemonCrossActionButton from './PokemonCrossActionButton.vue'
+import { updateMode } from '../types/PokedexMainType.ts'
 
 defineProps<{
   currentPokemon: Pokemon,
   pokemonList: Pokemon[],
-  handleOnClickCurrentPokemonId:(id:number) => void
+  handleOnClickCurrentPokemonId:(id:number) => void,
+  updateCurrentPokemonId:(mode: updateMode, value: number) => void,
 }>()
 
 </script>
@@ -27,6 +30,10 @@ defineProps<{
       :pokemon-list="pokemonList"
       :current-pokemon="currentPokemon"
     />
+    <PokemonCrossActionButton
+      class="pokedex-left-panel__action"
+      :update-current-pokemon-id="updateCurrentPokemonId"
+    />
   </section>
 </template>
 
@@ -39,6 +46,13 @@ defineProps<{
   background-color: var(--color-background-red-dark);
   margin: 50px 0 50px 50px;
   border-radius: 10px 0 0 10px;
+  position: relative;
+
+  &__action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 
   &__design {
     height: 100px;
