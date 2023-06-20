@@ -17,10 +17,13 @@ defineProps<{
 <template>
   <section class="pokedex-left-panel">
     <div class="pokedex-left-panel__design">
-      <div class="left-part">
+      <div class="pokedex-left-panel__design__left">
         <div class="pokedex-left-panel__design__circle" />
+        <div class="pokedex-left-panel__design__small__circle pokedex-left-panel__design__small__circle--red" />
+        <div class="pokedex-left-panel__design__small__circle pokedex-left-panel__design__small__circle--yellow" />
+        <div class="pokedex-left-panel__design__small__circle pokedex-left-panel__design__small__circle--green" />
       </div>
-      <div class="right-part" />
+      <div class="pokedex-left-panel__design__right" />
     </div>
     <PokemonCard
       :pokemon="currentPokemon"
@@ -73,29 +76,61 @@ defineProps<{
       background-color: var(--color-background-light-blue);
       border: 3px solid white;
       animation: blink 2s linear infinite;
+      box-shadow: -1px 2px 5px black;
+    }
+
+    &__small__circle {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      --color-background-small-circle: blue;
+      background-color: var(--color-background-small-circle);
+      box-shadow: -1px 2px 5px black;
+
+    }
+
+    &__small__circle--red {
+      --color-background-small-circle: red;
+    }
+
+    &__small__circle--yellow {
+      --color-background-small-circle: yellow;
+    }
+
+    &__small__circle--green {
+      --color-background-small-circle: green;
+    }
+
+    &__left {
+      margin: 20px;
+      display: flex;
+
+      .pokedex-left-panel__design__small__circle {
+        margin-left: 30px;
+      }
+
+      .pokedex-left-panel__design__small__circle ~ .pokedex-left-panel__design__small__circle {
+        margin-left: 7px;
+      }
+    }
+
+    &__right {
+      width: 175px;
+      height: 80px;
+      background-color: var(--color-background-red-dark);
+      position: absolute;
+      right: 0;
+      top: 20px;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        content: "";
+        border-right: 100px solid transparent;
+        border-top: 80px solid var(--color-background-red-light);
+      }
     }
   }
-}
-
-.left-part {
-  margin: 20px;
-}
-
-.right-part {
-  width: 175px;
-  height: 80px;
-  background-color: var(--color-background-red-dark);
-  position: absolute;
-  right: 0;
-  top: 20px;
-}
-
-.right-part::after {
-  position: absolute;
-  left: 0;
-  content: "";
-  border-right: 100px solid transparent;
-  border-top: 80px solid var(--color-background-red-light);
 }
 
 @keyframes blink {
