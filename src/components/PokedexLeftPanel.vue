@@ -33,10 +33,13 @@ defineProps<{
       :pokemon-list="pokemonList"
       :current-pokemon="currentPokemon"
     />
-    <PokemonCrossActionButton
-      class="pokedex-left-panel__action"
-      :update-current-pokemon-id="updateCurrentPokemonId"
-    />
+    <div class="pokedex-left-panel__bottom">
+      <div class="pokedex-left-panel__bottom__design" />
+      <PokemonCrossActionButton
+        class="pokedex-left-panel__action"
+        :update-current-pokemon-id="updateCurrentPokemonId"
+      />
+    </div>
   </section>
 </template>
 
@@ -130,6 +133,43 @@ defineProps<{
         border-top: 80px solid var(--color-background-red-light);
       }
     }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-around;
+
+    &__design {
+      position: relative;
+      width: 150px;
+      height: 50px;
+      background-color: var(--color-background-brown-dark);
+      border-radius: 5px;
+
+      &::before {
+          position: absolute;
+          top: 0;
+          left: -75%;
+          z-index: 2;
+          display: block;
+          content: '';
+          width: 10%;
+          height: 100%;
+          background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+          transform: skewX(-25deg);
+          animation: shine 2.5s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 80%;
   }
 }
 
