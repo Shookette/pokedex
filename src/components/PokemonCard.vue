@@ -12,7 +12,7 @@ defineProps<{ pokemon?: Pokemon }>()
       <img
         class="pokemon-card__sprite"
         :src="pokemon?.sprites?.front_default || ''"
-        alt="Sprites showing the front design of the current pokemon"
+        :alt="`Sprites showing the front design of ${pokemon?.name}`"
       >
       <h2 class="pokemon-card__title">
         {{ pokemon?.name }}
