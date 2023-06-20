@@ -87,16 +87,22 @@ const chartOptions = {
 </template>
 
 <style lang="scss" scoped>
+@use "../style.scss" as *;
+
 .pokedex-right-panel {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 100%;
   height: 500px;
   background-color: var(--color-background-red-light);
-  margin: 100px 50px 50px 0;
-  border-radius: 10px;
-  border: 10px solid var(--color-background-red-dark);
   align-items: flex-end;
+
+  @include medium {
+    width: 350px;
+    margin: 100px 50px 50px 0;
+    border-radius: 10px;
+    border: 10px solid var(--color-background-red-dark);
+  }
 
   &__chart {
     width: inherit;

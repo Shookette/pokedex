@@ -25,6 +25,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@mixin medium {
+  @media(min-width: 768px) {
+    @content;
+  }
+}
+
 body {
   margin: 0;
   display: flex;
@@ -36,7 +42,13 @@ body {
 #app {
   text-align: center;
   min-height: inherit;
+  width: 100%;
+
+  @include medium {
+    width: inherit;
+  }
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {

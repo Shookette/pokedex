@@ -68,10 +68,17 @@ const handleOnClickCurrentPokemonId = (id: number) => {
 </template>
 
 <style lang="scss" scoped>
+@use "../style.scss" as *;
+
 .pokedex {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: inherit;
   align-items: flex-end;
+
+  @include medium {
+    flex-direction: row;
+  }
 }
+
 </style>

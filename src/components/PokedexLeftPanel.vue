@@ -38,15 +38,21 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+@use "../style.scss" as *;
+
 .pokedex-left-panel {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 100%;
   height: 600px;
   background-color: var(--color-background-red-dark);
-  margin: 50px 0 50px 50px;
-  border-radius: 10px 0 0 10px;
   position: relative;
+
+  @include medium {
+    width: 350px;
+    margin: 50px 0 50px 50px;
+    border-radius: 10px 0 0 10px;
+  }
 
   &__action {
     position: absolute;
