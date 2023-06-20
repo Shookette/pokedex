@@ -3,12 +3,8 @@ import { PokemonType } from '../types/Pokemon.ts'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  pokemonType: PokemonType,
-  active: {
-    type: boolean,
-    required: false,
-    default: false
-  }
+  pokemonType: PokemonType
+  active?: boolean
 }>()
 
 const pokemonTypeItemClassnames = computed(() => {

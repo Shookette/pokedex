@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Pokemon } from '../types/Pokemon.ts'
-defineProps<{ pokemon: Pokemon }>()
+defineProps<{ pokemon?: Pokemon }>()
 </script>
 
 <template>

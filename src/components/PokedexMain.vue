@@ -22,13 +22,21 @@ watch(pokemonList, () => {
   currentPokemon.value = pokemonList.value.find(pokemon => pokemon.id === currentPokemonId.value)
 })
 
-const pokemonCurrentType = computed(() =>
-  currentPokemon.value?.types.map(type => type.type.name)
-)
+const pokemonCurrentType = computed(() => {
+  if (!currentPokemon.value) {
+    return []
+  }
 
-const pokemonCurrentStat = computed(() =>
-  currentPokemon.value?.stats.map(stat => stat.base_stat)
-)
+  return currentPokemon.value?.types.map(type => type.type.name)
+})
+
+const pokemonCurrentStat = computed(() => {
+  if (!currentPokemon.value) {
+    return []
+  }
+
+  return currentPokemon.value?.stats.map(stat => stat.base_stat)
+})
 
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value

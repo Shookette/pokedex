@@ -6,7 +6,7 @@ import PokemonCrossActionButton from './PokemonCrossActionButton.vue'
 import { updateMode } from '../types/PokedexMainType.ts'
 
 defineProps<{
-  currentPokemon: Pokemon,
+  currentPokemon?: Pokemon,
   pokemonList: Pokemon[],
   handleOnClickCurrentPokemonId:(id:number) => void,
   updateCurrentPokemonId:(mode: updateMode, value: number) => void,

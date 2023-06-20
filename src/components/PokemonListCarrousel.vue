@@ -3,7 +3,7 @@ import { Pokemon } from '../types/Pokemon.ts'
 import PokemonItemCarrousel from './PokemonItemCarrousel.vue'
 
 defineProps<{
-  currentPokemon: Pokemon,
+  currentPokemon?: Pokemon,
   pokemonList: Pokemon[],
   handleOnClickCurrentPokemonId:(currentId: number) => void
 }>()
@@ -14,7 +14,7 @@ defineProps<{
     <PokemonItemCarrousel
       v-for="pokemon in pokemonList"
       :key="pokemon.id"
-      :is-current="pokemon.id === currentPokemon.id"
+      :is-current="pokemon.id === currentPokemon?.id"
       :pokemon="pokemon"
       :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
     />
