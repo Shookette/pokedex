@@ -49,5 +49,8 @@ const isTypeIsInCurrentPokemonType = (type: PokemonType, pokemonTypeList: Pokemo
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  background-color: var(--color-background-brown-dark);
+  padding: 5px;
+  height: inherit;
 }
 </style>
