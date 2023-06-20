@@ -37,6 +37,7 @@ defineProps<{
   border: none;
   position: absolute;
   padding: 0;
+  cursor: pointer;
 }
 
 .left, .right {

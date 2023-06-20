@@ -31,6 +31,7 @@ defineProps<{
   align-items: center;
   width: 75px;
   height: 75px;
+  cursor: pointer;
 
   &--current {
     .pokemon-item-carrousel__name {
