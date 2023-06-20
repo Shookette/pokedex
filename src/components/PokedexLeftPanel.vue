@@ -64,7 +64,7 @@ defineProps<{
     height: 100px;
     position: relative;
     background-color: var(--color-background-red-light);
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 0;
 
     &__circle {
       height: 50px;
@@ -83,11 +83,11 @@ defineProps<{
 
 .right-part {
   width: 175px;
-  height: 70px;
+  height: 80px;
   background-color: var(--color-background-red-dark);
   position: absolute;
   right: 0;
-  top: 30px;
+  top: 20px;
 }
 
 .right-part::after {
@@ -95,7 +95,7 @@ defineProps<{
   left: 0;
   content: "";
   border-right: 100px solid transparent;
-  border-top: 70px solid var(--color-background-red-light);
+  border-top: 80px solid var(--color-background-red-light);
 }
 
 @keyframes blink {

@@ -62,16 +62,18 @@ const handleOnClickCurrentPokemonId = (id: number) => {
 
 <template>
   <main class="pokedex">
-    <PokedexLeftPanel
-      :pokemon-list="pokemonList"
-      :current-pokemon="currentPokemon"
-      :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
-      :update-current-pokemon-id="updateCurrentPokemonId"
-    />
-    <PokedexRightPanel
-      :pokemon-current-type="pokemonCurrentType"
-      :pokemon-current-stat="pokemonCurrentStat"
-    />
+    <div class="pokedex__layout">
+      <PokedexLeftPanel
+        :pokemon-list="pokemonList"
+        :current-pokemon="currentPokemon"
+        :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
+        :update-current-pokemon-id="updateCurrentPokemonId"
+      />
+      <PokedexRightPanel
+        :pokemon-current-type="pokemonCurrentType"
+        :pokemon-current-stat="pokemonCurrentStat"
+      />
+    </div>
   </main>
 </template>
 
@@ -80,13 +82,22 @@ const handleOnClickCurrentPokemonId = (id: number) => {
 
 .pokedex {
   display: flex;
+  width: 100%;
   flex-direction: column;
   min-height: inherit;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 
-  @include medium {
-    flex-direction: row;
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    @include medium {
+      flex-direction: row;
+    }
   }
+
 }
 
 </style>

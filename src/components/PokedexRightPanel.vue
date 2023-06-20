@@ -90,6 +90,8 @@ const chartOptions = {
 @use "../style.scss" as *;
 
 .pokedex-right-panel {
+
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -102,6 +104,16 @@ const chartOptions = {
     margin: 100px 50px 50px 0;
     border-radius: 0 10px 10px 0;
     border: 10px solid var(--color-background-red-dark);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -70px;
+      left: -10px;
+      width: 75px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid var(--color-background-red-dark);
+    }
   }
 
   &__chart {
