@@ -69,6 +69,7 @@ const handleOnClickCurrentPokemonId = (id: number) => {
         :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
         :update-current-pokemon-id="updateCurrentPokemonId"
       />
+      <div class="pokedex__layout__center" />
       <PokedexRightPanel
         :pokemon-current-type="pokemonCurrentType"
         :pokemon-current-stat="pokemonCurrentStat"
@@ -95,6 +96,15 @@ const handleOnClickCurrentPokemonId = (id: number) => {
 
     @include medium {
       flex-direction: row;
+    }
+
+    &__center {
+      height: 600px;
+      width: 20px;
+      margin-bottom: 50px;
+      background-color: var(--color-background-red-dark);
+      box-shadow: inset 0 1px 5px 2px black;
+      z-index: 10;
     }
   }
 
