@@ -47,6 +47,7 @@ defineProps<{
   &__image {
     width: 50px;
     height: 50px;
+    scale: 1.4
   }
 }
 </style>
