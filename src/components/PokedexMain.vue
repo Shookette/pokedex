@@ -98,14 +98,17 @@ const handleOnClickCurrentPokemonId = (id: number) => {
       flex-direction: row;
     }
 
-    &__center {
-      height: 600px;
-      width: 20px;
-      margin-bottom: 50px;
-      background-color: var(--color-background-red-dark);
-      box-shadow: inset 0 1px 5px 2px black;
-      z-index: 10;
+    @include medium {
+      &__center {
+        height: 600px;
+        width: 20px;
+        margin-bottom: 50px;
+        background-color: var(--color-background-red-dark);
+        box-shadow: inset 0 1px 5px 2px black;
+        z-index: 10;
+      }
     }
+
   }
 
 }
