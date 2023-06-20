@@ -100,7 +100,7 @@ const chartOptions = {
   @include medium {
     width: 350px;
     margin: 100px 50px 50px 0;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     border: 10px solid var(--color-background-red-dark);
   }
 
