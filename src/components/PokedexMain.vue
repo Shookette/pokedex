@@ -93,6 +93,7 @@ const handleOnClickCurrentPokemonId = (id: number) => {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    width: inherit;
 
     @include medium {
       flex-direction: row;
