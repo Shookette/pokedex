@@ -62,6 +62,7 @@ const openPokedex = () => {
   transform: rotateX(180deg);
   transform-origin: top center;
   z-index: 10;
+  border-bottom: 10px solid var(--color-background-red-dark);
 
   @include medium {
     width: 350px;
