@@ -25,11 +25,11 @@ const openPokedex = () => {
     <div
       v-if="isClosed"
       class="pokedex-right-panel__button"
+      @click="openPokedex"
     >
       <div class="pokedex-right-panel__button__top" />
-      <button
+      <div
         class="pokedex-right-panel__button__center"
-        @click="openPokedex"
       />
       <div class="pokedex-right-panel__button__bottom" />
     </div>
@@ -117,6 +117,14 @@ const openPokedex = () => {
       transform: rotateY(180deg);
     }
 
+    &:hover {
+      animation: rotateMobile 5s infinite linear;
+
+      @include medium {
+        animation: rotateDesktop 5s infinite linear;
+      }
+    }
+
     &__top {
       width: 100px;
       height: 50px;
@@ -175,5 +183,15 @@ const openPokedex = () => {
     transform: rotateX(0);
     z-index: 1;
   }
+}
+
+@keyframes rotateMobile {
+  from{ transform: rotate(180deg); }
+  to{ transform: rotate(-180deg); }
+}
+
+@keyframes rotateDesktop {
+  from{ transform: rotate(360deg); }
+  to{ transform: rotate(-360deg); }
 }
 </style>
