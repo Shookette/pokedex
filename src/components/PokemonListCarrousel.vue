@@ -26,7 +26,7 @@ defineProps<{
   display: flex;
   flex-direction: row;
   background-color: var(--color-background-grey-dark);
-  margin: 20px;
+  margin: 0 20px;
   border-radius: 5px;
   justify-content: space-evenly;
 }

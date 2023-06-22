@@ -36,7 +36,7 @@ defineProps<{ pokemon?: Pokemon }>()
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 0 20px;
   background-color: var(--color-background-white);
   border-radius: 20px 20px 20px 50px;
   height: 275px;

@@ -53,6 +53,7 @@ defineProps<{
   height: 600px;
   background-color: var(--color-background-red-dark);
   position: relative;
+  gap: 10px;
 
   @include medium {
     width: 350px;
@@ -105,7 +106,7 @@ defineProps<{
     }
 
     &__left {
-      margin: 20px;
+      margin: 0 20px;
       display: flex;
 
       .pokedex-left-panel__design__small__circle {
