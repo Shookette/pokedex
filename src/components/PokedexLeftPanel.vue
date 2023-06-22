@@ -9,6 +9,7 @@ defineProps<{
   currentPokemon?: Pokemon,
   pokemonList: Pokemon[],
   handleOnClickCurrentPokemonId:(id:number) => void,
+  handleOnClickGetRandomPokemon:() => void,
   updateCurrentPokemonId:(mode: updateMode, value: number) => void,
 }>()
 
@@ -34,6 +35,10 @@ defineProps<{
       :current-pokemon="currentPokemon"
     />
     <div class="pokedex-left-panel__bottom">
+      <div
+        class="pokedex-left-panel__bottom__button"
+        @click="handleOnClickGetRandomPokemon"
+      />
       <div class="pokedex-left-panel__bottom__design" />
       <PokemonCrossActionButton
         class="pokedex-left-panel__action"
@@ -59,12 +64,6 @@ defineProps<{
     width: 350px;
     margin: 50px 0 50px 50px;
     border-radius: 10px 0 0 10px;
-  }
-
-  &__action {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 
   &__design {
@@ -106,7 +105,7 @@ defineProps<{
     }
 
     &__left {
-      margin: 0 20px;
+      margin: 20px;
       display: flex;
 
       .pokedex-left-panel__design__small__circle {
@@ -138,7 +137,17 @@ defineProps<{
 
   &__bottom {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__button {
+      width: 50px;
+      height: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: var(--color-background-grey-dark);
+      box-shadow: -1px 2px 5px black;
+    }
 
     &__design {
       position: relative;

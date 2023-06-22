@@ -58,6 +58,12 @@ const handleOnClickCurrentPokemonId = (id: number) => {
   currentPokemonId.value = id
 }
 
+const getRandomPokemon = () => {
+  const minPokemonID = import.meta.env.VITE_FIRST_POKEMON_ID
+  const maxPokemonId = import.meta.env.VITE_LAST_POKEMON_ID
+  currentPokemonId.value = Math.floor(Math.random() * (maxPokemonId - minPokemonID + 1) + minPokemonID)
+}
+
 </script>
 
 <template>
@@ -67,6 +73,7 @@ const handleOnClickCurrentPokemonId = (id: number) => {
         :pokemon-list="pokemonList"
         :current-pokemon="currentPokemon"
         :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
+        :handle-on-click-get-random-pokemon="getRandomPokemon"
         :update-current-pokemon-id="updateCurrentPokemonId"
       />
       <div class="pokedex__layout__center" />
