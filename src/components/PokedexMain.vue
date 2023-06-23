@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { Pokemon } from '../types/Pokemon.ts'
-import { getPokemonsByOffsetAndLimit } from '../repository/PokemonRepository.ts'
+import { getPokemonByNameOrId, getPokemonsByOffsetAndLimit } from '../repository/PokemonRepository.ts'
 import PokedexLeftPanel from './PokedexLeftPanel.vue'
 import PokedexRightPanel from './PokedexRightPanel.vue'
 import { updateMode } from '../types/PokedexMainType.ts'
@@ -37,6 +37,15 @@ const pokemonCurrentStat = computed(() => {
 
   return currentPokemon.value?.stats.map(stat => stat.base_stat)
 })
+
+const getPokemonBySearchString = async (searchString: string) => {
+  const pokemon = await getPokemonByNameOrId(searchString)
+  if (!pokemon || !pokemon.id) {
+    return
+  }
+
+  currentPokemonId.value = pokemon.id
+}
 
 const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
   const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value
@@ -74,6 +83,7 @@ const getRandomPokemon = () => {
         :current-pokemon="currentPokemon"
         :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
         :handle-on-click-get-random-pokemon="getRandomPokemon"
+        :handle-on-click-search-pokemon="getPokemonBySearchString"
         :update-current-pokemon-id="updateCurrentPokemonId"
       />
       <div class="pokedex__layout__center" />

@@ -34,7 +34,6 @@ defineProps<{
 
 .direction-button {
   background-color: #504D4E;
-  border: none;
   position: absolute;
   padding: 0;
   cursor: pointer;
@@ -48,6 +47,7 @@ defineProps<{
 .up, .down {
   height: 30px;
   width: 16px;
+  z-index: 2;
 }
 
 .left {

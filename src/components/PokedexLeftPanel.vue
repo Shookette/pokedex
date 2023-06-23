@@ -4,14 +4,23 @@ import PokemonCard from './PokemonCard.vue'
 import PokemonListCarrousel from './PokemonListCarrousel.vue'
 import PokemonCrossActionButton from './PokemonCrossActionButton.vue'
 import { updateMode } from '../types/PokedexMainType.ts'
+import PokemonSearchBar from './PokemonSearchBar.vue'
+import { ref } from 'vue'
 
 defineProps<{
   currentPokemon?: Pokemon,
   pokemonList: Pokemon[],
   handleOnClickCurrentPokemonId:(id:number) => void,
   handleOnClickGetRandomPokemon:() => void,
+  handleOnClickSearchPokemon:(searchString: string) => void,
   updateCurrentPokemonId:(mode: updateMode, value: number) => void,
 }>()
+
+const isSearchMode = ref(false)
+
+const handleOnClickChangeSearchMode = () => {
+  isSearchMode.value = !isSearchMode.value
+}
 
 </script>
 
@@ -30,15 +39,27 @@ defineProps<{
       :pokemon="currentPokemon"
     />
     <PokemonListCarrousel
+      v-if="!isSearchMode"
       :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
       :pokemon-list="pokemonList"
       :current-pokemon="currentPokemon"
     />
+    <PokemonSearchBar
+      v-else
+      :handle-on-click-search-pokemon="handleOnClickSearchPokemon"
+    />
     <div class="pokedex-left-panel__bottom">
-      <div
-        class="pokedex-left-panel__bottom__button"
-        @click="handleOnClickGetRandomPokemon"
-      />
+      <div class="pokedex-left-panel__bottom__buttons">
+        <button
+          class="pokedex-left-panel__bottom__button"
+          @click="handleOnClickGetRandomPokemon"
+        />
+        <button
+          class="pokedex-left-panel__bottom__button pokedex-left-panel__bottom__button--blue"
+          @click="handleOnClickChangeSearchMode"
+        />
+      </div>
+
       <div class="pokedex-left-panel__bottom__design" />
       <PokemonCrossActionButton
         class="pokedex-left-panel__action"
@@ -140,6 +161,13 @@ defineProps<{
     justify-content: space-evenly;
     align-items: center;
 
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
+    }
+
     &__button {
       width: 50px;
       height: 10px;
@@ -147,6 +175,10 @@ defineProps<{
       cursor: pointer;
       background-color: var(--color-background-grey-dark);
       box-shadow: -1px 2px 5px black;
+
+      &--blue {
+        background-color: #54AAF3;
+      }
     }
 
     &__design {

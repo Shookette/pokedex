@@ -8,6 +8,12 @@ export const getPokemonById = async (id: number): Promise<Pokemon> => {
     return response.json();
 }
 
+export const getPokemonByNameOrId = async (searchString: string): Promise<Pokemon>  => {
+    const response = await fetch(`${POKEMON_FULL_BASE_URL}/${searchString}`);
+    return response.json();
+}
+
+
 export const getPokemonsByOffsetAndLimit = async (offset: number, limit = 1): Promise<Pokemon[]> => {
     if (offset <= import.meta.env.VITE_FIRST_POKEMON_ID) {
         return getThreeFirstPokemon()
