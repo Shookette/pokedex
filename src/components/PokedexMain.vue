@@ -1,102 +1,35 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import { Pokemon } from '../types/Pokemon.ts'
-import { getPokemonByNameOrId, getPokemonsByOffsetAndLimit } from '../repository/PokemonRepository.ts'
+import { onMounted } from 'vue'
 import PokedexLeftPanel from './PokedexLeftPanel.vue'
 import PokedexRightPanel from './PokedexRightPanel.vue'
-import { updateMode } from '../types/PokedexMainType.ts'
+import { usePokemonStore } from '../stores/PokemonStore.ts'
 
-const pokemonList = ref<Pokemon[]>([])
-const currentPokemon = ref<Pokemon>()
-const currentPokemonId = ref<number>(1)
+const store = usePokemonStore()
 
 onMounted(async () => {
-  pokemonList.value = await getPokemonsByOffsetAndLimit(currentPokemonId.value)
+  await store.getPokemonById(store.currentPokemonId)
 })
-
-watch(currentPokemonId, async () => {
-  pokemonList.value = await getPokemonsByOffsetAndLimit(currentPokemonId.value)
-})
-
-watch(pokemonList, () => {
-  currentPokemon.value = pokemonList.value.find(pokemon => pokemon.id === currentPokemonId.value)
-})
-
-const pokemonCurrentType = computed(() => {
-  if (!currentPokemon.value) {
-    return []
-  }
-
-  return currentPokemon.value?.types.map(type => type.type.name)
-})
-
-const pokemonCurrentStat = computed(() => {
-  if (!currentPokemon.value) {
-    return []
-  }
-
-  return currentPokemon.value?.stats.map(stat => stat.base_stat)
-})
-
-const getPokemonBySearchString = async (searchString: string) => {
-  const pokemon = await getPokemonByNameOrId(searchString)
-  if (!pokemon || !pokemon.id) {
-    return
-  }
-
-  currentPokemonId.value = pokemon.id
-}
-
-const updateCurrentPokemonId = (updateMode: updateMode, value: number) => {
-  const newValue = updateMode === 'decrease' ? currentPokemonId.value - value : currentPokemonId.value + value
-
-  if (updateMode === 'decrease' && newValue <= import.meta.env.VITE_FIRST_POKEMON_ID) {
-    currentPokemonId.value = parseInt(import.meta.env.VITE_FIRST_POKEMON_ID)
-    return
-  }
-
-  if (updateMode === 'increase' && newValue >= import.meta.env.VITE_LAST_POKEMON_ID) {
-    currentPokemonId.value = parseInt(import.meta.env.VITE_LAST_POKEMON_ID)
-    return
-  }
-
-  currentPokemonId.value = newValue
-}
-
-const handleOnClickCurrentPokemonId = (id: number) => {
-  currentPokemonId.value = id
-}
-
-const getRandomPokemon = () => {
-  const minPokemonID = import.meta.env.VITE_FIRST_POKEMON_ID
-  const maxPokemonId = import.meta.env.VITE_LAST_POKEMON_ID
-  currentPokemonId.value = Math.floor(Math.random() * (maxPokemonId - minPokemonID + 1) + minPokemonID)
-}
-
 </script>
 
 <template>
   <main class="pokedex">
     <div class="pokedex__layout">
       <PokedexLeftPanel
-        :pokemon-list="pokemonList"
-        :current-pokemon="currentPokemon"
-        :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
-        :handle-on-click-get-random-pokemon="getRandomPokemon"
-        :handle-on-click-search-pokemon="getPokemonBySearchString"
-        :update-current-pokemon-id="updateCurrentPokemonId"
+        :pokemon-list="store.pokemonCarrousel"
+        :current-pokemon="store.pokemon"
+        :handle-on-click-current-pokemon-id="store.getPokemonById"
+        :handle-on-click-get-random-pokemon="store.getRandomPokemon"
+        :handle-on-click-search-pokemon="store.getPokemonBySearchString"
+        :update-current-pokemon-id="store.updateCurrentPokemonId"
       />
       <div class="pokedex__layout__center" />
-      <PokedexRightPanel
-        :pokemon-current-type="pokemonCurrentType"
-        :pokemon-current-stat="pokemonCurrentStat"
-      />
+      <PokedexRightPanel :pokemon-current-type="store.pokemonType" :pokemon-current-stat="store.pokemonStat" />
     </div>
   </main>
 </template>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use '../style.scss' as *;
 
 .pokedex {
   display: flex;
@@ -126,9 +59,6 @@ const getRandomPokemon = () => {
         z-index: 10;
       }
     }
-
   }
-
 }
-
 </style>

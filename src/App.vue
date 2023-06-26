@@ -8,6 +8,4 @@ import Pokedex from './components/PokedexMain.vue'
   </Suspense>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

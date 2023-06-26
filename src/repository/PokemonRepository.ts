@@ -1,51 +1,59 @@
-import {Pokemon} from "../types/Pokemon.ts";
+import { Pokemon } from '../types/Pokemon.ts'
 
-const POKEMON_ENDPOINT = 'pokemon';
+const POKEMON_ENDPOINT = 'pokemon'
 const POKEMON_FULL_BASE_URL = `${import.meta.env.VITE_API_POKEMON_URL}/${POKEMON_ENDPOINT}`
 
 export const getPokemonById = async (id: number): Promise<Pokemon> => {
-    const response = await fetch(`${POKEMON_FULL_BASE_URL}/${id}`);
-    return response.json();
+  const response = await fetch(`${POKEMON_FULL_BASE_URL}/${id}`)
+  return response.json()
 }
 
-export const getPokemonByNameOrId = async (searchString: string): Promise<Pokemon>  => {
-    const response = await fetch(`${POKEMON_FULL_BASE_URL}/${searchString}`);
-    return response.json();
+export const getPokemonByNameOrId = async (searchString: string): Promise<Pokemon> => {
+  const response = await fetch(`${POKEMON_FULL_BASE_URL}/${searchString}`)
+  return response.json()
 }
 
+export const getMissingPokemonsByOffsetAndLimit = async (offset: number, list: Pokemon[] = [], limit = 10): Promise<Pokemon[]> => {
+  if (offset <= import.meta.env.VITE_FIRST_POKEMON_ID) {
+    return getTenFirstMissingPokemon(list)
+  }
 
-export const getPokemonsByOffsetAndLimit = async (offset: number, limit = 1): Promise<Pokemon[]> => {
-    if (offset <= import.meta.env.VITE_FIRST_POKEMON_ID) {
-        return getThreeFirstPokemon()
+  if (offset >= import.meta.env.VITE_LAST_POKEMON_ID) {
+    return getTenLastMissingPokemon(list)
+  }
+
+  const startIndex = offset - 1
+  const promises: Promise<Pokemon>[] = []
+  for (let i = startIndex; i <= offset + limit; i++) {
+    if (list.find((pokemon) => pokemon.id === i)) {
+      continue
     }
+    promises.push(getPokemonById(i))
+  }
 
-    if (offset >= import.meta.env.VITE_LAST_POKEMON_ID) {
-        return getThreeLastPokemon()
-    }
-
-    const startIndex = offset - 1;
-    const promises: Promise<Pokemon>[] = [];
-    for (let i = startIndex; i <= offset + limit; i++) {
-        promises.push(getPokemonById(i));
-    }
-
-    return await Promise.all(promises);
+  return await Promise.all(promises)
 }
 
-const getThreeFirstPokemon = async (): Promise<Pokemon[]> => {
-    const promises: Promise<Pokemon>[] = [];
-    for (let i = import.meta.env.VITE_FIRST_POKEMON_ID; i <= 3; i++) {
-        promises.push(getPokemonById(i));
+const getTenFirstMissingPokemon = async (list: Pokemon[] = []): Promise<Pokemon[]> => {
+  const promises: Promise<Pokemon>[] = []
+  for (let i = import.meta.env.VITE_FIRST_POKEMON_ID; i <= 10; i++) {
+    if (list.find((pokemon) => pokemon.id === i)) {
+      continue
     }
+    promises.push(getPokemonById(i))
+  }
 
-    return await Promise.all(promises);
+  return await Promise.all(promises)
 }
 
-const getThreeLastPokemon = async (): Promise<Pokemon[]> => {
-    const promises: Promise<Pokemon>[] = [];
-    for (let i = import.meta.env.VITE_LAST_POKEMON_ID - 2; i <= import.meta.env.VITE_LAST_POKEMON_ID; i++) {
-        promises.push(getPokemonById(i));
+const getTenLastMissingPokemon = async (list: Pokemon[] = []): Promise<Pokemon[]> => {
+  const promises: Promise<Pokemon>[] = []
+  for (let i = import.meta.env.VITE_LAST_POKEMON_ID - 9; i <= import.meta.env.VITE_LAST_POKEMON_ID; i++) {
+    if (list.find((pokemon) => pokemon.id === i)) {
+      continue
     }
+    promises.push(getPokemonById(i))
+  }
 
-    return await Promise.all(promises);
+  return await Promise.all(promises)
 }
