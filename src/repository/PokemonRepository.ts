@@ -22,9 +22,10 @@ export const getMissingPokemonsByOffsetAndLimit = async (offset: number, list: P
     return getTenLastMissingPokemon(list)
   }
 
-  const startIndex = offset - 1
+  const startIndex = Math.max(import.meta.env.VITE_FIRST_POKEMON_ID, offset - limit / 2)
+  const lastIndex = Math.min(import.meta.env.VITE_LAST_POKEMON_ID, offset + limit / 2)
   const promises: Promise<Pokemon>[] = []
-  for (let i = startIndex; i <= offset + limit; i++) {
+  for (let i = startIndex; i <= lastIndex; i++) {
     if (list.find((pokemon) => pokemon.id === i)) {
       continue
     }

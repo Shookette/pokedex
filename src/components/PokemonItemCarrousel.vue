@@ -2,9 +2,9 @@
 import { Pokemon } from '../types/Pokemon.ts'
 
 defineProps<{
-  pokemon: Pokemon,
-  isCurrent: boolean,
-  handleOnClickCurrentPokemonId:(currentId: number) => void
+  pokemon: Pokemon
+  isCurrent: boolean
+  handleOnClickCurrentPokemonId: (currentId: number) => void
 }>()
 </script>
 
@@ -15,11 +15,7 @@ defineProps<{
     @click="() => handleOnClickCurrentPokemonId(pokemon.id)"
   >
     <span class="pokemon-item-carrousel__name">{{ pokemon?.name }}</span>
-    <img
-      class="pokemon-item-carrousel__image"
-      :src="pokemon?.sprites?.front_default || ''"
-      alt="Pokemon front sprites"
-    >
+    <img class="pokemon-item-carrousel__image" :src="pokemon?.sprites?.front_default || ''" alt="Pokemon front sprites" />
   </div>
 </template>
 
@@ -48,7 +44,7 @@ defineProps<{
   &__image {
     width: 50px;
     height: 50px;
-    scale: 1.4
+    scale: 1.4;
   }
 }
 </style>
