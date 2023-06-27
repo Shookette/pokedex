@@ -8,12 +8,12 @@ import PokemonSearchBar from './PokemonSearchBar.vue'
 import { ref } from 'vue'
 
 defineProps<{
-  currentPokemon?: Pokemon,
-  pokemonList: Pokemon[],
-  handleOnClickCurrentPokemonId:(id:number) => void,
-  handleOnClickGetRandomPokemon:() => void,
-  handleOnClickSearchPokemon:(searchString: string) => void,
-  updateCurrentPokemonId:(mode: updateMode, value: number) => void,
+  currentPokemon?: Pokemon
+  pokemonList: Pokemon[]
+  handleOnClickCurrentPokemonId: (id: number) => void
+  handleOnClickGetRandomPokemon: () => void
+  handleOnClickSearchPokemon: (searchString: string) => void
+  updateCurrentPokemonId: (mode: updateMode, value: number) => void
 }>()
 
 const isSearchMode = ref(false)
@@ -21,7 +21,6 @@ const isSearchMode = ref(false)
 const handleOnClickChangeSearchMode = () => {
   isSearchMode.value = !isSearchMode.value
 }
-
 </script>
 
 <template>
@@ -35,25 +34,17 @@ const handleOnClickChangeSearchMode = () => {
       </div>
       <div class="pokedex-left-panel__design__right" />
     </div>
-    <PokemonCard
-      :pokemon="currentPokemon"
-    />
+    <PokemonCard :pokemon="currentPokemon" />
     <PokemonListCarrousel
       v-if="!isSearchMode"
       :handle-on-click-current-pokemon-id="handleOnClickCurrentPokemonId"
       :pokemon-list="pokemonList"
       :current-pokemon="currentPokemon"
     />
-    <PokemonSearchBar
-      v-else
-      :handle-on-click-search-pokemon="handleOnClickSearchPokemon"
-    />
+    <PokemonSearchBar v-else :handle-on-click-search-pokemon="handleOnClickSearchPokemon" />
     <div class="pokedex-left-panel__bottom">
       <div class="pokedex-left-panel__bottom__buttons">
-        <button
-          class="pokedex-left-panel__bottom__button"
-          @click="handleOnClickGetRandomPokemon"
-        />
+        <button class="pokedex-left-panel__bottom__button" @click="handleOnClickGetRandomPokemon" />
         <button
           class="pokedex-left-panel__bottom__button pokedex-left-panel__bottom__button--blue"
           @click="handleOnClickChangeSearchMode"
@@ -70,7 +61,7 @@ const handleOnClickChangeSearchMode = () => {
 </template>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use '../style.scss' as *;
 
 .pokedex-left-panel {
   display: flex;
@@ -110,7 +101,6 @@ const handleOnClickChangeSearchMode = () => {
       --color-background-small-circle: blue;
       background-color: var(--color-background-small-circle);
       box-shadow: -1px 2px 5px black;
-
     }
 
     &__small__circle--red {
@@ -149,7 +139,7 @@ const handleOnClickChangeSearchMode = () => {
       &::after {
         position: absolute;
         left: 0;
-        content: "";
+        content: '';
         border-right: 100px solid transparent;
         border-top: 80px solid var(--color-background-red-light);
       }
@@ -177,7 +167,7 @@ const handleOnClickChangeSearchMode = () => {
       box-shadow: -1px 2px 5px black;
 
       &--blue {
-        background-color: #54AAF3;
+        background-color: #54aaf3;
       }
     }
 
@@ -189,17 +179,17 @@ const handleOnClickChangeSearchMode = () => {
       border-radius: 5px;
 
       &::before {
-          position: absolute;
-          top: 0;
-          left: -75%;
-          z-index: 2;
-          display: block;
-          content: '';
-          width: 10%;
-          height: 100%;
-          background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-          transform: skewX(-25deg);
-          animation: shine 2.5s linear infinite;
+        position: absolute;
+        top: 0;
+        left: -75%;
+        z-index: 2;
+        display: block;
+        content: '';
+        width: 10%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+        transform: skewX(-25deg);
+        animation: shine 2.5s linear infinite;
       }
     }
   }

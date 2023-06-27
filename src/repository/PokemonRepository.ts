@@ -13,7 +13,11 @@ export const getPokemonByNameOrId = async (searchString: string): Promise<Pokemo
   return response.json()
 }
 
-export const getMissingPokemonsByOffsetAndLimit = async (offset: number, list: Pokemon[] = [], limit = 10): Promise<Pokemon[]> => {
+export const getMissingPokemonsByOffsetAndLimit = async (
+  offset: number,
+  list: Pokemon[] = [],
+  limit = 10
+): Promise<Pokemon[]> => {
   if (offset <= import.meta.env.VITE_FIRST_POKEMON_ID) {
     return getTenFirstMissingPokemon(list)
   }

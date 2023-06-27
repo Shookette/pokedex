@@ -22,14 +22,15 @@ const pokemonTypeList: PokemonType[] = [
   'dark',
   'fairy',
   'unknown',
-  'shadow'
+  'shadow',
 ]
 
 defineProps<{
   currentPokemonType: PokemonType[]
 }>()
 
-const isTypeIsInCurrentPokemonType = (type: PokemonType, pokemonTypeList: PokemonType[] = []) => pokemonTypeList.includes(type)
+const isTypeIsInCurrentPokemonType = (type: PokemonType, pokemonTypeList: PokemonType[] = []) =>
+  pokemonTypeList.includes(type)
 </script>
 
 <template>

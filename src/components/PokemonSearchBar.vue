@@ -1,23 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 defineProps<{
-  handleOnClickSearchPokemon:(searchString: string) => void
+  handleOnClickSearchPokemon: (searchString: string) => void
 }>()
 
 const searchString = ref('')
-
 </script>
 
 <template>
   <div class="pokemon-search-bar">
-    <input
-      v-model="searchString"
-      class="pokemon-search-bar__input"
-    >
-    <button
-      class="pokemon-search-bar__button"
-      @click="() => handleOnClickSearchPokemon(searchString)"
-    />
+    <input v-model="searchString" class="pokemon-search-bar__input" />
+    <button class="pokemon-search-bar__button" @click="() => handleOnClickSearchPokemon(searchString)" />
   </div>
 </template>
 

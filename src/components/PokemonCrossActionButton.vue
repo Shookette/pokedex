@@ -2,27 +2,15 @@
 import { updateMode } from '../types/PokedexMainType.js'
 
 defineProps<{
-  updateCurrentPokemonId:(mode: updateMode, value: number) => void
+  updateCurrentPokemonId: (mode: updateMode, value: number) => void
 }>()
 </script>
 <template>
   <div class="directional-buttons">
-    <button
-      class="direction-button up"
-      @click="() => updateCurrentPokemonId('increase', 10)"
-    />
-    <button
-      class="direction-button right"
-      @click="() => updateCurrentPokemonId('increase', 1)"
-    />
-    <button
-      class="direction-button down"
-      @click="() => updateCurrentPokemonId('decrease', 10)"
-    />
-    <button
-      class="direction-button left"
-      @click="() => updateCurrentPokemonId('decrease', 1)"
-    />
+    <button class="direction-button up" @click="() => updateCurrentPokemonId('increase', 10)" />
+    <button class="direction-button right" @click="() => updateCurrentPokemonId('increase', 1)" />
+    <button class="direction-button down" @click="() => updateCurrentPokemonId('decrease', 10)" />
+    <button class="direction-button left" @click="() => updateCurrentPokemonId('decrease', 1)" />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -33,18 +21,20 @@ defineProps<{
 }
 
 .direction-button {
-  background-color: #504D4E;
+  background-color: #504d4e;
   position: absolute;
   padding: 0;
   cursor: pointer;
 }
 
-.left, .right {
+.left,
+.right {
   width: 30px;
   height: 16px;
 }
 
-.up, .down {
+.up,
+.down {
   height: 30px;
   width: 16px;
   z-index: 2;
@@ -57,7 +47,7 @@ defineProps<{
 
 .up {
   left: calc(50% - 8px);
-  top: 8px
+  top: 8px;
 }
 
 .right {

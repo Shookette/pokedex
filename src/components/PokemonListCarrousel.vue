@@ -3,9 +3,9 @@ import { Pokemon } from '../types/Pokemon.ts'
 import PokemonItemCarrousel from './PokemonItemCarrousel.vue'
 
 defineProps<{
-  currentPokemon?: Pokemon,
-  pokemonList: Pokemon[],
-  handleOnClickCurrentPokemonId:(currentId: number) => void
+  currentPokemon?: Pokemon
+  pokemonList: Pokemon[]
+  handleOnClickCurrentPokemonId: (currentId: number) => void
 }>()
 </script>
 

@@ -5,8 +5,8 @@ import PokemonStatRadarChart from './PokemonStatRadarChart.vue'
 import { ref } from 'vue'
 
 defineProps<{
-  pokemonCurrentStat: number[],
-  pokemonCurrentType: { type: PokemonType[], default: [] }
+  pokemonCurrentStat: number[]
+  pokemonCurrentType: { type: PokemonType[]; default: [] }
 }>()
 
 const isClosed = ref(true)
@@ -14,41 +14,31 @@ const isClosed = ref(true)
 const openPokedex = () => {
   isClosed.value = false
 }
-
 </script>
 
 <template>
-  <section
-    class="pokedex-right-panel"
-    :class="{'pokedex-right-panel--opened': !isClosed}"
-  >
-    <div
-      v-if="isClosed"
-      class="pokedex-right-panel__button"
-      @click="openPokedex"
-    >
+  <section class="pokedex-right-panel" :class="{ 'pokedex-right-panel--opened': !isClosed }">
+    <div v-if="isClosed" class="pokedex-right-panel__button" @click="openPokedex">
       <div class="pokedex-right-panel__button__top" />
-      <div
-        class="pokedex-right-panel__button__center"
-      />
+      <div class="pokedex-right-panel__button__center" />
       <div class="pokedex-right-panel__button__bottom" />
     </div>
 
     <PokemonStatRadarChart
       v-if="!isClosed"
       :pokemon-current-stat="pokemonCurrentStat"
-      :class="{'pokedex-right-panel__content--opened': !isClosed, 'pokedex-right-panel__content--closed': isClosed}"
+      :class="{ 'pokedex-right-panel__content--opened': !isClosed, 'pokedex-right-panel__content--closed': isClosed }"
     />
     <PokemonTypeList
       v-if="!isClosed"
       :current-pokemon-type="pokemonCurrentType"
-      :class="{'pokedex-right-panel__content--opened': !isClosed, 'pokedex-right-panel__content--closed': isClosed}"
+      :class="{ 'pokedex-right-panel__content--opened': !isClosed, 'pokedex-right-panel__content--closed': isClosed }"
     />
   </section>
 </template>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use '../style.scss' as *;
 
 .pokedex-right-panel {
   position: relative;
@@ -73,7 +63,7 @@ const openPokedex = () => {
     transform-origin: left center;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: -70px;
       left: -10px;
@@ -140,7 +130,7 @@ const openPokedex = () => {
       border-radius: 50%;
       position: absolute;
       border: 2px solid black;
-      cursor: pointer
+      cursor: pointer;
     }
 
     &__bottom {
@@ -154,7 +144,8 @@ const openPokedex = () => {
 }
 
 @keyframes pokedexShowContent {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 0;
   }
 
@@ -167,7 +158,9 @@ const openPokedex = () => {
   0% {
     transform: rotateY(180deg);
   }
-  30% { z-index: 999 }
+  30% {
+    z-index: 999;
+  }
   100% {
     z-index: 1;
     transform: rotateY(0);
@@ -178,7 +171,9 @@ const openPokedex = () => {
   0% {
     transform: rotateX(180deg);
   }
-  30% { z-index: 999 }
+  30% {
+    z-index: 999;
+  }
   100% {
     transform: rotateX(0);
     z-index: 1;
@@ -186,12 +181,20 @@ const openPokedex = () => {
 }
 
 @keyframes rotateMobile {
-  from{ transform: rotate(180deg); }
-  to{ transform: rotate(-180deg); }
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
 }
 
 @keyframes rotateDesktop {
-  from{ transform: rotate(360deg); }
-  to{ transform: rotate(-360deg); }
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 </style>
