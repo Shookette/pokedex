@@ -10,7 +10,7 @@ const searchString = ref('')
 <template>
   <div class="pokemon-search-bar">
     <input v-model="searchString" class="pokemon-search-bar__input" />
-    <button class="pokemon-search-bar__button" @click="() => handleOnClickSearchPokemon(searchString)" />
+    <button class="pokemon-search-bar__button" @click="() => handleOnClickSearchPokemon(searchString.toLowerCase())" />
   </div>
 </template>
 
