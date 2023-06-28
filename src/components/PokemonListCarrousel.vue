@@ -29,5 +29,6 @@ defineProps<{
   margin: 0 20px;
   border-radius: 5px;
   justify-content: space-evenly;
+  height: 75px;
 }
 </style>
